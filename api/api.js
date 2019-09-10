@@ -3,22 +3,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://superyaz:yaz.456@cluster0-ypqzo.mongodb.net/zpatos_superyaz?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//     const collection = client.db("test").collection("devices");
-//     // perform actions on the collection object
-//     client.close();
-// });
+mongoose.connect('mongodb+srv://yacamo:yaz.456@cluster0-trace.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+}).then(db => console.log('DB is connect'))
+.catch(err => console.log(err));
 
-mongoose.connect('mongodb+srv://superyaz:yaz.456@cluster0-ypqzo.mongodb.net/zpatos_superyaz?retryWrites=true&w=majority', {
-    useNewUrlParser: true
-})
-    .then(db => console.log(`DB is connect`))
-    .catch(err => console.log(err));
 
 const app = express();
+
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -27,8 +21,13 @@ app.use(bodyParser.json());
 
 const port = 3000;
 
-app.get('/', (req, res) => res.send('Hello World!'));
+/**
+ * Requiero las rutas desde el archivo index ubicado en ./routes
+ */
 
-//mongoose.connect('mongodb+srv://superyaz:yaz.456@cluster0-ypqzo.mongodb.net/zpatos_superyaz?retryWrites=true&w=majority', { useNewUrlParser: true });
+app.use(require("./routes/indexRoutes"));
+
+app.get('/', (req, res) => res.send('Bienvenido a mi APP para zapatos'));
+
 
 app.listen(process.env.PORT, () => console.log(`Example app listening on port port! ${port}`));
