@@ -2,8 +2,8 @@ const express = require('express');
 
 const app = express();
 
-app.use(require("./usuarioRoutes"));
-app.use(require("./productoRoutes"));
-app.use(require("./referenciaRoutes"));
+app.use("/api", require("./usuarioRoutes"));
+app.use("/api", require("./productoRoutes"));
+app.use("/api", require("./referenciaRoutes"));
 
 module.exports = app;
