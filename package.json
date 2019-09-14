@@ -4,7 +4,7 @@
   "description": "\"Tienda usando node y mongo atlas\"",
   "main": "api/api.js",
   "scripts": {
-    "start": "node api.js",
+    "start": "node api/api.js",
     "dev": "nodemon api.js"
   },
   "repository": {
