@@ -3,26 +3,22 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var usuarioSchema = new Schema({
-    nombre:{
+    nombre: {
         type: String,
-        required:true
+        required: true
     },
-    cedula:{
-        type:Number,
-        required:true
+    mail: {
+        type: String,
+        required: true
     },
-    mail:{
-        type:String,
-        required:true
-    },
-    estado:{
-        type:Boolean,
+    estado: {
+        type: Boolean,
         required: false,
-        default:true
+        default: true
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+        type: String,
+        required: true
     }
 
 });

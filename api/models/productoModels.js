@@ -3,26 +3,34 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var productoSchema = new Schema({
-    nombre:{
+    nombre: {
         type: String,
-        required:true
+        required: true
     },
-    tipo:{
+    talla: {
         type: String,
-        required:true
+        required: true
     },
-    color:{
+    tipo: {
         type: String,
-        required:true
+        required: true
     },
-    cantidad:{
+    color: {
         type: String,
-        required:true
+        required: true
     },
-    fecha:{
+    cantidad: {
+        type: String,
+        required: true
+    },
+    fecha: {
         type: Date,
-        default:Date.now
+        default: Date.now
     },
+    imagen: {
+        type: String,
+        required: true
+    }
 
 });
 

@@ -1,16 +1,16 @@
 var Producto = require('./../models/productoModels');
 
-let index = (req, res)=>{
+let index = (req, res) => {
 
-    Producto.find({}).exec((err, datos)=>{
-        if(err){
+    Producto.find({}).exec((err, datos) => {
+        if (err) {
             return res.status(404).json({
-                ok:false,
+                ok: false,
                 err
             });
         }
         return res.status(200).json({
-            ok:true,
+            ok: true,
             datos
         })
     })
@@ -18,34 +18,35 @@ let index = (req, res)=>{
 }
 
 
-let guardar = (req, res)=>{
+let guardar = (req, res) => {
     let producto = new Producto({
         nombre: req.body.nombre,
+        talla: req.body.talla,
         tipo: req.body.tipo,
         color: req.body.color,
         cantidad: req.body.cantidad,
-    
+
     });
-    producto.save((err, productoNew)=>{
-        if(err){
+    producto.save((err, productoNew) => {
+        if (err) {
             return res.status(404).json({
-                ok:false, 
+                ok: false,
                 err
             });
         }
         return res.status(200).json({
-            ok:true,
+            ok: true,
             producto: productoNew
         });
     })
 }
 
 
-let ver = (req, res)=>{
-    Producto.findById(req.params.id).exec((err, datos)=>{
-        if(err){
+let ver = (req, res) => {
+    Producto.findById(req.params.id).exec((err, datos) => {
+        if (err) {
             return res.status(404).json({
-                ok:false,
+                ok: false,
                 err
             });
         }
@@ -56,49 +57,50 @@ let ver = (req, res)=>{
 }
 
 
-let modificar = (req, res)=>{
+let modificar = (req, res) => {
     let producto = {
-        nombre:req.body.nombre,
-        tipo:req.body.tipo,
-        color:req.body.color,
-        cantidad:req.body.cantidad,
-        fecha:req.body.fecha,
+        nombre: req.body.nombre,
+        talla: req.body.nombre,
+        tipo: req.body.tipo,
+        color: req.body.color,
+        cantidad: req.body.cantidad,
+        fecha: req.body.fecha,
     }
-/**
- * Busca el usuario por id  y me retorna el nuevo usuario con el metodo {new : true}
-*/
-    Producto.findByIdAndUpdate(req.params.id, producto,{new : true}, (err, productoNew)=>{
-        if(err){
+    /**
+     * Busca el usuario por id  y me retorna el nuevo usuario con el metodo {new : true}
+    */
+    Producto.findByIdAndUpdate(req.params.id, producto, { new: true }, (err, productoNew) => {
+        if (err) {
             return res.status(404).json({
-                ok:false,
+                ok: false,
                 err
             });
         }
         return res.json({
-            ok:true,
+            ok: true,
             productoNew,
         });
     });
 }
 
 
-let eliminar = (req, res)=>{
-    Producto.findByIdAndUpdate(req.params.id, {estado : req.params.estado},{new : true}, (err, productoNew)=>{
-        if(err){
+let eliminar = (req, res) => {
+    Producto.findByIdAndUpdate(req.params.id, { estado: req.params.estado }, { new: true }, (err, productoNew) => {
+        if (err) {
             return res.status(404).json({
-                ok:false,
+                ok: false,
                 err
             });
         }
         return res.json({
-            ok:true,
+            ok: true,
             productoNew,
         });
     });
 }
 
 module.exports = {
-    index, 
+    index,
     guardar,
     ver,
     modificar,
